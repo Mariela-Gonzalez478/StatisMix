@@ -6,7 +6,9 @@ Authors@R:
            comment = c(ORCID = "0000-0002-8747-5257"))
 Description: This method allows the analysis of the stable part of the co-structure between two three-way matrices X_npk and Y_nqk, enabling the quantification and graphical representation of the contribution and quality of representation of the variables in the construction of the compromise matrix and the intra-structure.
 Imports:
-    methods
+    methods,
+    ade4,
+    pracma
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
