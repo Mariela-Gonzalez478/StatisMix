@@ -11,7 +11,7 @@ The goal of StatisMix is to ...
 You can install the development version of StatisMix like so:
 
 ``` r
-# FILL THIS IN! HOW CAN PEOPLE INSTALL YOUR DEV PACKAGE?
+remotes::install_github("Mariela-Gonzalez478/StatisMix")
 ```
 
 ## Example
