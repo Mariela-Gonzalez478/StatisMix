@@ -282,13 +282,13 @@ HJSTATICO=function(x,y,condition,bplot,preprocessing,compx,compy) {
 
 
   #codigo interactivo intraestructura - SI
-  FK=matrix(nrow=length(Z1[,1]),ncol=k*length(csvd$v[,1]))
-  QK=matrix(nrow=k*length(Z1[,1]),ncol=length(csvd$u[,1]))
+  FK=matrix(nrow=length(Z[,1]),ncol=k*length(csvd$v[,1]))
+  QK=matrix(nrow=k*length(Z[,1]),ncol=length(csvd$u[,1]))
   for(i in 1:k){
-    tempf=matrix(nrow=indexz1[i,4],ncol=length(csvd$v[,1]))
-    tempf=(Z1[,indexz1[i,2]:indexz1[i,3]])%*%csvd$v
-    tempq=matrix(nrow=indexz1[i,5],ncol=length(csvd$u[,1]))
-    tempq=t(Z1[,indexz1[i,2]:indexz1[i,3]])%*%(csvd$u)
+    tempf=matrix(nrow=indexz[i,4],ncol=length(csvd$v[,1]))
+    tempf=(Z[indexz[i,2]:indexz[i,3],])%*%csvd$v
+    tempq=matrix(nrow=indexz[i,5],ncol=length(csvd$u[,1]))
+    tempq=t(Z[indexz[i,2]:indexz[i,3],])%*%(csvd$u)
     if(i==1) {
       FK=tempf
       QK=tempq }
@@ -388,6 +388,37 @@ graphintra=function(dimx,dimy,FK,QK,indexz1,bplot,compromise,k) {
   if(exists("bplot")==FALSE){
     bplot=TRUE
   }
+  indexFK=matrix(nrow=k,ncol=3)
+  colnames(indexFK)=c("Tables","Start","Finish")
+  subtables=length(FK[1,])/k
+  for (i in 1:k){
+    if( i==1) {
+      indexFK[i,1]=i
+      indexFK[i,2]=1
+      indexFK[i,3]=subtables*i}
+    else{
+      indexFK[i,1]=i
+      indexFK[i,2]=indexFK[i-1,2]+subtables
+      indexFK[i,3]=subtables*i
+    }
+  }
+  indexFK
+
+  indexQK=matrix(nrow=k,ncol=3)
+  colnames(indexQK)=c("Tables","Start","Finish")
+  subtables=length(QK[,1])/k
+  for (i in 1:k){
+    if( i==1) {
+      indexQK[i,1]=i
+      indexQK[i,2]=1
+      indexQK[i,3]=subtables*i}
+    else{
+      indexQK[i,1]=i
+      indexQK[i,2]=indexQK[i-1,2]+subtables
+      indexQK[i,3]=subtables*i
+    }
+  }
+  indexQK
   dimx; dimy
   d1=dimx; d2=dimy
   x=paste("Axis",dimx,sep="")
@@ -395,8 +426,8 @@ graphintra=function(dimx,dimy,FK,QK,indexz1,bplot,compromise,k) {
   if (bplot=="FALSE") {
     for (i in 1:k) {
       par(mfrow=c(1,2))
-      tempFK=FK[,indexz1[i,2]:indexz1[i,3]]
-      tempQK=QK[indexz1[i,2]:indexz1[i,3],]
+      tempFK=FK[,indexFK[i,2]:indexFK[i,3]]
+      tempQK=QK[indexQK[i,2]:indexQK[i,3],]
       maxxQK=max(abs(tempQK[,d1])); maxyQK=max(abs(tempQK[,d2]))
       maxxFK=max(abs(tempFK[,d1])); maxyFK=max(abs(tempFK[,d2]))
       maxx=max(maxxQK,maxxFK); mayy=max(maxyQK,maxyFK)
@@ -412,8 +443,8 @@ graphintra=function(dimx,dimy,FK,QK,indexz1,bplot,compromise,k) {
   else {
     for(i in 1:k) {
       par(mfrow=c(1,1))
-      tempFK=FK[,indexz1[i,2]:indexz1[i,3]]; F=tempFK
-      tempQK=QK[indexz1[i,2]:indexz1[i,3],]; Q=tempQK
+      tempFK=FK[,indexFK[i,2]:indexFK[i,3]]; F=tempFK
+      tempQK=QK[indexQK[i,2]:indexQK[i,3],]; Q=tempQK
       HJBK=hjb(bplot=TRUE, F=F, Q=Q,dimx=d1,dimy=d2,compromise=compromise)
       qq=cbind(tempQK[,d1],tempQK[,d2])
       ff=cbind(tempFK[,d1],tempFK[,d2])

@@ -34,19 +34,14 @@ Table preprocessing function that considers a third way or categorical variable 
 It is worth mentioning that X is normalized, and Y is only centered, due to X is taken as variables or measurements with possible different scales and Y as frequency data (species frequencies).
 }
 \examples{
-x=env_data;y=spe_data;etiq=etiq_data$space
-result=HJSTATICO(x=x,y=y,condition=etiq,bplot=TRUE,preprocessing = "A.Norma",compx=1,compy=2)
-result$Compromise
-result$HJB
-result$HJBK
-result$CrossTables;result$X;result$Y
+Prep.Tables(x=env_data, y=spe_data, condition=etiq_data$space, preprocessing = "A.Norma")
 
 }
 \references{
 http://hdl.handle.net/10366/149381
 }
 \seealso{
-ade4::statico, MixSTATICO()
+\code{\link[=HJSTATICO]{HJSTATICO()}}, ade4::statico, MixSTATICO()
 }
 \author{
 Mariela González-Narváez, Ph.D., María José Fernández Gomez, Susana Mendes, Purificación Galindo-Villardón, Ph.D., Gema Zambrano Zambrano, Ysaí Ronquillo Mora, George Acosta Chong
