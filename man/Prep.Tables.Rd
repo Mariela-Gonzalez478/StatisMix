@@ -33,8 +33,20 @@ Table preprocessing function that considers a third way or categorical variable 
 •	“A.Norma” This method operates similarly to dividing each element of the total matrix by the square root of the total sum of squared elements, ensuring that the total variance of each k-matrix is equal to one and that all K matrices participate equally in the analysis.
 It is worth mentioning that X is normalized, and Y is only centered, due to X is taken as variables or measurements with possible different scales and Y as frequency data (species frequencies).
 }
+\examples{
+x=env_data;y=spe_data;etiq=etiq_data$space
+result=HJSTATICO(x=x,y=y,condition=etiq,bplot=TRUE,preprocessing = "A.Norma",compx=1,compy=2)
+result$Compromise
+result$HJB
+result$HJBK
+result$CrossTables;result$X;result$Y
+
+}
 \references{
 http://hdl.handle.net/10366/149381
+}
+\seealso{
+ade4::statico, MixSTATICO()
 }
 \author{
 Mariela González-Narváez, Ph.D., María José Fernández Gomez, Susana Mendes, Purificación Galindo-Villardón, Ph.D., Gema Zambrano Zambrano, Ysaí Ronquillo Mora, George Acosta Chong

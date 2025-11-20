@@ -42,8 +42,20 @@ Analysis of the stable part of the co-structure between two three-way data sets 
 \details{
 The dimensions of the commitment are determined by the rank of the matrix.
 }
+\examples{
+x=env_data;y=spe_data;etiq=etiq_data$space
+result=HJSTATICO(x=x,y=y,condition=etiq,bplot=TRUE,preprocessing = "A.Norma",compx=1,compy=2)
+result$Compromise
+result$HJB
+result$HJBK
+result$CrossTables;result$X;result$Y
+
+}
 \references{
 http://hdl.handle.net/10366/149381
+}
+\seealso{
+ade4::statico, MixSTATICO()
 }
 \author{
 Mariela González-Narváez, Ph.D., María José Fernández Gomez, Susana Mendes, Purificación Galindo-Villardón, Ph.D., Gema Zambrano Zambrano, Ysaí Ronquillo Mora, George Acosta Chong
