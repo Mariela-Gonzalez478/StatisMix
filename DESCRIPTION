@@ -2,7 +2,7 @@ Package: StatisMix
 Title: What the Package Does (One Line, Title Case)
 Version: 0.0.0.9000
 Authors@R: 
-    person("Mariela", "González-Narváez", , "margonzal@espol.edu.ec", role = c("aut", "cre"),
+    person("Mariela", "González-Narváez", , "margonzal@espol.edu.ec", role = c("aut", "cre","cph"),
            comment = c(ORCID = "0000-0002-8747-5257"))
 Description: This method allows the analysis of the stable part of the co-structure between two three-way matrices X_npk and Y_nqk, enabling the quantification and graphical representation of the contribution and quality of representation of the variables in the construction of the compromise matrix and the intra-structure.
 Imports:
